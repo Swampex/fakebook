@@ -1,0 +1,28 @@
+.messForm {
+    display: grid;
+    grid-template-columns: 200px 50px;
+    column-gap: 10px;
+    justify-content: end;
+    margin: 10px 0;
+}
+
+.messForm__textarea {
+    resize: none;
+    padding: 10px 8px 5px 12px;
+    height: 55px;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+.messForm__textarea:focus {
+    outline: none;
+}
+
+.messForm__button {
+    border-radius: 15px;
+    transition-duration: 0.1s;
+}
+
+.messForm__button:focus {
+    outline: none;
+}

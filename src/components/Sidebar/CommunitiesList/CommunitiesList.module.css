@@ -1,0 +1,16 @@
+.communitiesList {
+    display: inline-grid;
+    row-gap: 10px;
+    margin-left: 5px;
+}
+
+.community {
+    display: inline-grid;
+    grid-template-columns: 50px 1fr;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.community__avatar {
+    width: 50px;
+}

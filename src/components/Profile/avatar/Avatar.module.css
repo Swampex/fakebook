@@ -1,0 +1,29 @@
+.avatar {
+    margin-top: 5px;
+    display: inline-flex;
+    width: 500px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    height: 100px;
+    align-items: center;
+}
+
+.avatar__img {
+    height: 100px;
+    border-radius: 50px;
+}
+
+.avatar__status {
+    margin-left: 10px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+
+.avatar__statusEmpty {
+    margin-left: 10px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    font-style: italic;
+    cursor: pointer;
+    text-decoration: underline;
+}

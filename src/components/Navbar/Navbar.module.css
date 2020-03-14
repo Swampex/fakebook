@@ -1,0 +1,23 @@
+.nav {
+    border: 2px solid black;
+    grid-area: n;
+    padding: 10px;
+}
+
+.item {
+    text-align: center;
+    margin: 5px;
+}
+
+.item a {
+    text-decoration: none;
+    color: gray;
+}
+
+a.active {
+    color: chocolate;
+}
+
+a:hover {
+    color: chocolate;
+}

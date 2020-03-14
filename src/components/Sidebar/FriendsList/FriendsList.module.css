@@ -1,0 +1,17 @@
+.friendsList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    justify-items: center;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+.friend {
+    display: inline-grid;
+    justify-items: center;
+}
+
+.friend__avatar {
+    width: 50px;
+}

@@ -1,0 +1,8 @@
+.sidebar {
+    grid-area: s;
+    margin: 10px;
+}
+
+.sidebar__header {
+    margin: 15px;
+}

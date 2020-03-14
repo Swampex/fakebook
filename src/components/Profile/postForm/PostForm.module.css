@@ -1,0 +1,26 @@
+.postForm {
+    display: grid;
+    grid-template-rows: 50px;
+    grid-template-columns: 500px 80px;
+    grid-gap: 15px;
+    margin: 10px;
+}
+
+.postForm__textarea {
+    resize: none;
+    padding: 10px 8px 5px 12px;
+}
+
+.postForm__textarea:focus {
+    outline: none;
+}
+
+.postForm__button {
+    margin-left: 5px;
+    border-radius: 15px;
+    transition-duration: 0.1s;
+}
+
+.postForm__button:focus {
+    outline: none;
+}
