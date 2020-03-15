@@ -1,21 +1,14 @@
 import {profileApi} from "../../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_POST = 'UPDATE-POST';
 const TOGGLE_LIKE = 'TOGGLE-LIKE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 
-export function addPostActionCreator() {
+export function addPostActionCreator(message) {
     return {
-        type: ADD_POST
-    }
-}
-
-export function updatePostActionCreator(text) {
-    return {
-        type: UPDATE_POST,
-        text: text
+        type: ADD_POST,
+        message: message
     }
 }
 
@@ -69,7 +62,6 @@ let initialState = {
         },
         {id: 2, text: "2 Lorem ipsum est my shagga lala boom", likeCounter: 34, liked: false}
     ],
-    postInProcess: '',
     profile: null
 };
 
@@ -80,17 +72,11 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             let newPost = {
                 id: state.posts[state.posts.length - 1].id + 1,
-                text: state.postInProcess,
+                text: action.message,
                 likeCounter: 0,
                 liked: false
             };
             newState.posts.push(newPost);
-            newState.postInProcess = '';
-            return newState;
-        }
-        case UPDATE_POST: {
-            newState.postInProcess = action.text;
-            console.log("state.postInProcess " + newState.postInProcess);
             return newState;
         }
         case TOGGLE_LIKE: {

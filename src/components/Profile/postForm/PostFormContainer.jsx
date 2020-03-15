@@ -1,6 +1,6 @@
 import PostForm from "./PostForm";
 import connect from "react-redux/es/connect/connect";
-import {addPostActionCreator, updatePostActionCreator} from "../../../redux/reducers/profile-reducer";
+import {addPostActionCreator} from "../../../redux/reducers/profile-reducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -10,7 +10,6 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        updatePost: (event) => dispatch(updatePostActionCreator(event.target.value)),
         addPost: () => dispatch(addPostActionCreator())
     }
 };

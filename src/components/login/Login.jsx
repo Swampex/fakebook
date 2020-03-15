@@ -1,6 +1,8 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 import {Redirect} from "react-router-dom";
+import {Input} from "../FormsControls/FormsControls";
+import {requiredField} from "../../utils/validators";
 
 const Login = (props) => {
 
@@ -23,13 +25,13 @@ const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={"login"} component={"input"} name={"login"}/>
+                <Field placeholder={"login"} component={Input} name={"login"} validate={[requiredField]} />
             </div>
             <div>
-                <Field placeholder={"password"} component={"input"} name={"password"}/>
+                <Field placeholder={"password"} component={Input} name={"password"} validate={[requiredField]} />
             </div>
             <div>
-                <Field type="checkbox" component={"input"} name={"rememberMe"}/> remember me
+                <Field type="checkbox" component={Input} name={"rememberMe"}/> remember me
             </div>
             <div>
                 <button>Login</button>
@@ -38,10 +40,6 @@ const LoginForm = (props) => {
     )
 };
 
-const LoginReduxForm = reduxForm({
-    form: "login"
-})(LoginForm);
-
-
+const LoginReduxForm = reduxForm({form: "login"})(LoginForm);
 
 export default Login;

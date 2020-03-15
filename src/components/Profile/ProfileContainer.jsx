@@ -1,7 +1,11 @@
 import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {setUserProfileThunkCreator, setUserStatusThunkCreator} from "../../redux/reducers/profile-reducer";
+import {
+    addPostActionCreator,
+    setUserProfileThunkCreator,
+    setUserStatusThunkCreator
+} from "../../redux/reducers/profile-reducer";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirectComponent";
 import {compose} from "redux";
@@ -33,7 +37,7 @@ let mapStateToProps = (state) => {
 };
 
 export default compose(
-    connect(mapStateToProps, {setUserProfileThunkCreator, setUserStatusThunkCreator}),
+    connect(mapStateToProps, {setUserProfileThunkCreator, setUserStatusThunkCreator, addPostActionCreator}),
     //withAuthRedirect,
     withRouter
 )(ProfileContainer);

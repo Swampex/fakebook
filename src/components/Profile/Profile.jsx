@@ -2,8 +2,8 @@ import React from 'react';
 import PostContainer from "./post/PostContainer";
 import PostFormContainer from "./postForm/PostFormContainer";
 import Avatar from "./avatar/Avatar";
-import Preloader from "../common/Preloader";
-import {setUserStatusThunkCreator} from "../../redux/reducers/profile-reducer";
+import Preloader from "../FormsControls/Preloader";
+import {addPostActionCreator, setUserStatusThunkCreator} from "../../redux/reducers/profile-reducer";
 
 const Profile = (props) => {
 
@@ -11,9 +11,13 @@ const Profile = (props) => {
         return <Preloader/>
     }
 
-    let postsList = props.posts
-         .map(p => <PostContainer post={p} key={p.id}/>);
+    let onSubmitProfileMessage = (message) => {
+        props.addPostActionCreator(message.profilePost);
+    };
 
+    let postsList = props.posts
+         .map(p => <PostContainer post={p}/>);
+    
     return (
         <div>
             <div>
@@ -26,7 +30,7 @@ const Profile = (props) => {
                 <div> Looking for a job: {props.profile.profile.lookingForAJobDescription} </div>
                 : null
             }
-            <PostFormContainer/>
+            <PostFormContainer onSubmit={onSubmitProfileMessage}/>
             {postsList}
         </div>)
 };

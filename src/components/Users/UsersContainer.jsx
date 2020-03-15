@@ -6,7 +6,7 @@ import {
 } from "../../redux/reducers/users-reducer";
 import * as React from "react";
 import Users from "./Users";
-import Preloader from "../common/Preloader";
+import Preloader from "../FormsControls/Preloader";
 
 class UsersApiComponent extends React.Component {
 
