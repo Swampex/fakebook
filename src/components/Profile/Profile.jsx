@@ -16,7 +16,7 @@ const Profile = (props) => {
     };
 
     let postsList = props.posts
-         .map(p => <PostContainer post={p}/>);
+         .map(p => <PostContainer post={p} key={p.id}/>);
     
     return (
         <div>

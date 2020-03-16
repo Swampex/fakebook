@@ -13,7 +13,9 @@ class LoginApiComponent extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        errorMessage: state.auth.errorMessage,
+        isLoginSuccess: state.auth.isLoginSuccess
     }
 };
 

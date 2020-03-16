@@ -53,5 +53,11 @@ export const authApi = {
         bodyFormData.set("rememberMe", rememberMe);
 
         return instance.post("http://localhost:8080/login", bodyFormData)
+            .then(rs => {
+                return rs.data;
+            })
+            .catch(e => {
+                return e.response.data;
+            })
     }
 };

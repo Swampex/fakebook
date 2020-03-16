@@ -17,10 +17,14 @@ function logout() {
     }
 }
 
-function loginAC(isLoginSuccess) {
+function loginAC(isLoginSuccess, errorMessage, id, email, login) {
     return {
         type: LOGIN,
-        isLoginSuccess: isLoginSuccess
+        isLoginSuccess: isLoginSuccess,
+        id: id,
+        email: email,
+        login: login,
+        errorMessage: errorMessage
     }
 }
 
@@ -49,8 +53,11 @@ export const logoutThunkCreator = () => {
 export const loginThunkCreator = (login, password, rememberMe) => {
     return (dispatch) => {
         authApi.login(login, password, rememberMe)
-            .then(response => {
-                dispatch(loginAC(response.status === 200));
+            .then(data => {
+                !data.exception
+                    ? dispatch(loginAC(true, "",
+                    data.id, data.email, data.login))
+                    : dispatch(loginAC(false, data.exception));
             })
     }
 };
@@ -60,7 +67,8 @@ let initialState = {
     email: null,
     login: null,
     isAuth: false,
-    isFetching: false
+    isFetching: false,
+    errorMessage: ""
 };
 
 const authReducer = (state = initialState, action) => {
@@ -81,7 +89,11 @@ const authReducer = (state = initialState, action) => {
         case LOGIN: {
             return {
                 ...state,
-                isAuth: action.isLoginSuccess
+                isAuth: action.isLoginSuccess,
+                userId: action.id,
+                login: action.login,
+                email: action.email,
+                errorMessage: action.errorMessage
             }
         }
 

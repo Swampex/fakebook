@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./FormsControls.module.css";
 
 export const Textarea = ({input, meta, ...props}) => {
-    debugger
     const errorCondition = meta.touched && meta.error;
     return <div>
         <textarea name="" id="" {...input} {...props}
@@ -12,7 +11,6 @@ export const Textarea = ({input, meta, ...props}) => {
 };
 
 export const Input = ({input, meta, ...props}) => {
-    debugger
     const errorCondition = meta.touched && meta.error;
     return <div>
         <input name="" id="" {...input} {...props}
