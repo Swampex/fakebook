@@ -1,8 +1,10 @@
 import {authApi} from "../../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const LOGOUT = "LOGOUT";
 const LOGIN = "LOGIN";
+const SIGNUP = "SIGNUP";
 
 function setAuthUserData(userId, email, login) {
     return {
@@ -28,17 +30,23 @@ function loginAC(isLoginSuccess, errorMessage, id, email, login) {
     }
 }
 
-export const authUserThunkCreator = () => {
-    return (dispatch) => {
-        authApi.getAuthMe()
-            .then(data => {
-                if(data.resultCode === 0) {
-                    let {id, email, login} = data;
-                    dispatch(setAuthUserData(id, email, login));
-                }
-            })
+function signupAC(isShowingSignupSuccess) {
+    return {
+        type: SIGNUP,
+        isShowingSignupSuccess: isShowingSignupSuccess
     }
-};
+}
+
+export const authUserThunkCreator = () => (dispatch) => {
+    return authApi.getAuthMe()
+        .then(data => {
+            if (data.resultCode === 0) {
+                let {id, email, login} = data;
+                dispatch(setAuthUserData(id, email, login));
+            }
+        });
+    }
+;
 
 export const logoutThunkCreator = () => {
     return (dispatch) => {
@@ -62,13 +70,29 @@ export const loginThunkCreator = (login, password, rememberMe) => {
     }
 };
 
+export const signupThunkCreator = (login, email, password) => {
+    return (dispatch) => {
+        authApi.signup(login, email, password)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(signupAC(true));
+                } else {
+                dispatch(stopSubmit("signUpForm", {_error: "login or email are not unique"}))
+                //dispatch(stopSubmit("signUpForm", {_error: data.messages[0]}))
+                //dispatch(stopSubmit("signUpForm", {login: "login not unique"}))
+                }
+            })
+    }
+};
+
 let initialState = {
     userId: null,
     email: null,
     login: null,
     isAuth: false,
     isFetching: false,
-    errorMessage: ""
+    errorMessage: "",
+    isShowingSignupSuccess: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -94,6 +118,12 @@ const authReducer = (state = initialState, action) => {
                 login: action.login,
                 email: action.email,
                 errorMessage: action.errorMessage
+            }
+        }
+        case SIGNUP: {
+            return {
+                ...state,
+                isShowingSignupSuccess: action.isShowingSignupSuccess
             }
         }
 

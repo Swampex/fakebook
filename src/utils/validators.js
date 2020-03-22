@@ -9,3 +9,9 @@ export const maxLengthCreator = (maxLength) => (value) => {
         ? `field must be less than ${maxLength} symbols`
         : undefined;
 };
+
+export const minLengthCreator = (minLength) => (value) => {
+    return value && value.length < minLength
+        ? `field must be longer than ${minLength} symbols`
+        : undefined;
+};

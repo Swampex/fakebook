@@ -7,6 +7,14 @@ import {
 import * as React from "react";
 import Users from "./Users";
 import Preloader from "../FormsControls/Preloader";
+import {
+    getCurrentPage, getFollowingIdsInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux/reducers/users-selectors";
+import {getUserId} from "../../redux/reducers/auth-selectors";
 
 class UsersApiComponent extends React.Component {
 
@@ -29,7 +37,7 @@ class UsersApiComponent extends React.Component {
                    toggleIsFollowingInProgress={this.props.toggleIsFollowingInProgress}
                    followingIdsInProgress={this.props.followingIdsInProgress}
                    followThunkCreator={this.props.followThunkCreator}
-                   unFollowThunkCreator={this.props.unFollowThunkCreator}
+                   unFollowThunkCreator={this.props.unFollowThunkCreator} currentUserId={this.props.currentUserId}
             />
         </>
     }
@@ -37,12 +45,13 @@ class UsersApiComponent extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingIdsInProgress: state.usersPage.followingIdsInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingIdsInProgress: getFollowingIdsInProgress(state),
+        currentUserId: getUserId(state)
     }
 };
 

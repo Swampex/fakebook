@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './Avatar.module.css';
+import anonymous from "../../../resources/anonymous.png";
 
 class Avatar extends React.Component {
 
@@ -43,7 +44,8 @@ class Avatar extends React.Component {
     render() {
         return (
             <div className={classes.avatar}>
-                <img className={classes.avatar__img} src={this.props.ava} alt="meAva"/>
+                <img className={classes.avatar__img}
+                     src={this.props.ava || anonymous} alt="meAva"/>
                 {this.showStatus()}
             </div>
         )    }

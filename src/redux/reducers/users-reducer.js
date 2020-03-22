@@ -63,8 +63,9 @@ let initialState = {
 };
 
 const usersReducer = (state = initialState, action) => {
+
     switch (action.type) {
-        case (FOLLOW): {
+        case FOLLOW: {
             return {
             ...state,
                     users: state.users.map( u => {
@@ -76,7 +77,7 @@ const usersReducer = (state = initialState, action) => {
             }
         }
 
-        case (UNFOLLOW): {
+        case UNFOLLOW: {
             return {
             ...state,
                     users: state.users.map( u => {
@@ -88,38 +89,38 @@ const usersReducer = (state = initialState, action) => {
             }
         }
 
-        case (SET_USERS): {
+        case SET_USERS: {
             return {
             ...state,
                     users: [...action.users]
             }
         }
 
-        case (SET_CURRENT_PAGE): {
+        case SET_CURRENT_PAGE: {
             return {
             ...state,
-                    users: [...state.users],
-                    currentPage: action.currentPage
+            users: [...state.users],
+            currentPage: action.currentPage
             }
         }
 
-        case (SET_TOTAL_USERS_COUNT): {
+        case SET_TOTAL_USERS_COUNT: {
             return {
             ...state,
-                    totalUsersCount: action.totalUsersCount
+            totalUsersCount: action.totalUsersCount
             }
         }
 
-        case (TOGGLE_FETCH_STATE): {
+        case TOGGLE_FETCH_STATE: {
             return {
             ...state,
-                    isFetching: !state.isFetching
+            isFetching: !state.isFetching
             }
         }
-        case (TOGGLE_FOLLOWING_IN_PROGRESS): {
+        case TOGGLE_FOLLOWING_IN_PROGRESS: {
             return  {
             ...state,
-                    followingIdsInProgress: action.isFollowingInProgress
+            followingIdsInProgress: action.isFollowingInProgress
                     ? [...state.followingIdsInProgress, action.userId]
                     : state.followingIdsInProgress.filter( id => id !== action.userId)
             }

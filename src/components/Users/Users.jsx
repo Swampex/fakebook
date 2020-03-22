@@ -1,6 +1,7 @@
 import React from "react";
 import css from "./users.module.css";
 import {NavLink} from "react-router-dom";
+import anonymous from "../../resources/anonymous.png";
 
 let Users = (props) => {
     let pages = [];
@@ -20,10 +21,12 @@ let Users = (props) => {
                 { props.users.map(u =>
                     <div key={u.id} className={css.usersContainer__user}>
                         <NavLink to={"/profile/" + u.id}>
-                            <img src={u.photo} className={css.userContainer__photo} alt=""/>
+                            <img src={u.photo ? u.photo : anonymous}
+                                className={css.userContainer__photo} alt=""/>
                         </NavLink>
                         <div className={css.userContainer__name}>{u.name} {u.firstName} </div>
-                        <div className={css.userContainer__location}>{u.userLocation.town}, {u.userLocation.country}</div>
+                        <div className={css.userContainer__location}>
+                            {u.userLocation && `${u.userLocation.town}, ${u.userLocation.country}`}</div>
                         {u.followed
                             ? <button disabled={props.followingIdsInProgress.some(id => id === u.id)}
                                       onClick={() => props.unFollowThunkCreator(u.id) }

@@ -13,11 +13,10 @@ import {compose} from "redux";
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if(!userId) {
-            userId = 1;
+        let userId = this.props.match.params.userId || this.props.currentUserId;
+        if(userId) {
+            this.props.setUserProfileThunkCreator(userId);
         }
-        this.props.setUserProfileThunkCreator(userId);
     }
 
     render() {
@@ -32,7 +31,9 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
-        posts: state.profilePage.posts
+        posts: state.profilePage.posts,
+        currentUserId: state.auth.userId,
+        isAuth: state.auth.isAuth
     }
 };
 

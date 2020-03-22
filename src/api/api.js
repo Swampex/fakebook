@@ -41,7 +41,7 @@ export const authApi = {
             .then(response => response.data)
     },
     logout() {
-        return instance.get("http://localhost:8080/logout")
+        return instance.get("logout")
             .then(response => {
             })
     },
@@ -52,12 +52,19 @@ export const authApi = {
         bodyFormData.set("password", password);
         bodyFormData.set("rememberMe", rememberMe);
 
-        return instance.post("http://localhost:8080/login", bodyFormData)
+        return instance.post("login", bodyFormData)
             .then(rs => {
-                return rs.data;
+                return rs.data
             })
             .catch(e => {
-                return e.response.data;
+                return e.response.data
+            })
+    },
+
+    signup(login, email, password) {
+        return instance.post("signUp", {login, email, password})
+            .then(rs => {
+                return rs.data;
             })
     }
 };
