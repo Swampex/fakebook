@@ -1,8 +1,17 @@
+import React from "react";
 import likeOn from '../../../resources/red_heart_2.jpg';
 import likeOff from '../../../resources/heart.png';
 import Post from "./Post";
-import connect from "react-redux/es/connect/connect";
+
 import {toggleLikeActionCreator} from "../../../redux/reducers/profile-reducer";
+import {connect} from "react-redux";
+
+class PostContainer extends React.Component {
+
+    render() {
+        return <Post {...this.props}/>
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -21,6 +30,6 @@ const mergeProps = (propsFromState, propsFromDispatch, ownProps) => {
     return result;
 };
 
-const PostContainer = connect(null, mapDispatchToProps, mergeProps)(Post);
+PostContainer = connect(null, mapDispatchToProps, mergeProps)(Post);
 
 export default PostContainer;

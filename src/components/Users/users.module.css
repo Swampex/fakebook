@@ -29,27 +29,3 @@
 .userContainer__followBtn {
     margin: 10px 0 30px 0;
 }
-
-.pagingBlock {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 30px);
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    padding: 0 100px
-}
-
-.pagingBlock__selectedPage {
-    font-weight: bold;
-    border-radius: 50px;
-    border: 2px solid black;
-    cursor: pointer;
-    width: 20px;
-    text-align: center;
-}
-
-.pagingBlock__notSelectedPage {
-    cursor: pointer;
-    width: 20px;
-    text-align: center;
-}

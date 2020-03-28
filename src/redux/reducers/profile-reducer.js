@@ -4,11 +4,19 @@ const ADD_POST = 'ADD-POST';
 const TOGGLE_LIKE = 'TOGGLE-LIKE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
+const DELETE_POST = "DELETE_POST";
 
 export function addPostActionCreator(message) {
     return {
         type: ADD_POST,
         message: message
+    }
+}
+
+export function deletePostActionCreator(id) {
+    return {
+        type: DELETE_POST,
+        id: id
     }
 }
 
@@ -33,22 +41,15 @@ export function setUserStatus(status) {
     }
 }
 
-export const setUserProfileThunkCreator = (userId) => {
-    return (dispatch) => {
-        profileApi.getProfile(userId)
-            .then(data => {
-                dispatch(setUserProfile(data));
-            })
+export const setUserProfileThunkCreator = (userId) => async (dispatch) => {
+        let data = await profileApi.getProfile(userId);
+        dispatch(setUserProfile(data));
     }
-};
+;
 
-export const setUserStatusThunkCreator = (status) => {
-    return (dispatch) => {
-        profileApi.setStatus(status)
-            .then((data) => {
-                if (data.resultCode === 0) dispatch(setUserStatus(status));
-            })
-    }
+export const setUserStatusThunkCreator = (status) => async (dispatch) => {
+    let data = await profileApi.setStatus(status);
+    if (data.resultCode === 0) dispatch(setUserStatus(status));
 };
 
 let initialState = {
@@ -103,6 +104,12 @@ const profileReducer = (state = initialState, action) => {
                     ...state.profile,
                     status: action.status
                 }
+            }
+        }
+        case DELETE_POST: {
+            return {
+                ...state,
+                posts: state.posts.filter( p => p.id !== action.id)
             }
         }
         default: return state

@@ -1,44 +1,42 @@
 import React from 'react';
 import PostContainer from "./post/PostContainer";
 import PostFormContainer from "./postForm/PostFormContainer";
-import Avatar from "./avatar/Avatar";
 import Preloader from "../FormsControls/Preloader";
-import {NavLink} from "react-router-dom";
+import AvatarWithHooks from "./avatar/AvatarWithHooks";
+import {Redirect} from "react-router-dom";
 
-const Profile = (props) => {
+const Profile = ({isAuth, userIdParam, profile, addPostActionCreator, posts, setUserStatusThunkCreator}) => {
 
-    // if(!props.isAuth) {
-    //     return <div>
-    //         <span>To view this page please </span>
-    //         <NavLink to={"/login"}>log in</NavLink>
-    //     </div>
-    // }
+    if(!isAuth && !userIdParam) {
+        return <Redirect to={"/login"}/>;
+    }
 
-    if(!props.profile) {
+    if(!profile) {
         return <Preloader/>
     }
 
     let onSubmitProfileMessage = (message) => {
-        props.addPostActionCreator(message.profilePost);
+        addPostActionCreator(message.profilePost);
     };
 
-    let postsList = props.posts
-         .map(p => <PostContainer post={p} key={p.id}/>);
+    let postsList = [...posts]
+        .reverse()
+        .map(p => <PostContainer post={p} key={p.id}/>);
     
     return (
         <div>
             <div>
                 <span style={ {fontWeight: "bold"} }>
-                    {`${props.profile.firstName || ""} ${props.profile.name || ""}`}
+                    {`${profile.firstName || ""} ${profile.name || ""}`}
                 </span>
-                {props.profile.userLocation &&
-                    <span> {` || ${props.profile.userLocation.town}, ${props.profile.userLocation.country}`} </span>}
+                {profile.userLocation &&
+                    <span> {` || ${profile.userLocation.town}, ${profile.userLocation.country}`} </span>}
             </div>
-            <Avatar status={props.profile.status}
-                    ava= {props.profile.profile.photos && props.profile.profile.photos.photo_small}
-                    setStatus={props.setUserStatusThunkCreator}/>
-            { props.profile.profile && props.profile.profile.lookingForAJob ?
-                <div> Looking for a job: {props.profile.profile.lookingForAJobDescription} </div>
+            <AvatarWithHooks status={profile.status}
+                    ava= {profile.profile.photos && profile.profile.photos.photo_small}
+                    setStatus={setUserStatusThunkCreator}/>
+            { profile.profile && profile.profile.lookingForAJob ?
+                <div> Looking for a job: {profile.profile.lookingForAJobDescription} </div>
                 : null
             }
             <PostFormContainer onSubmit={onSubmitProfileMessage}/>

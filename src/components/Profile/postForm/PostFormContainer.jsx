@@ -1,6 +1,7 @@
 import PostForm from "./PostForm";
-import connect from "react-redux/es/connect/connect";
+
 import {addPostActionCreator} from "../../../redux/reducers/profile-reducer";
+import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
     return {

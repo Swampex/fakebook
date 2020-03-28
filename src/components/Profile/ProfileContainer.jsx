@@ -7,10 +7,10 @@ import {
     setUserStatusThunkCreator
 } from "../../redux/reducers/profile-reducer";
 import {withRouter} from "react-router-dom";
-import {withAuthRedirect} from "../../hoc/withAuthRedirectComponent";
 import {compose} from "redux";
 
-class ProfileContainer extends React.Component {
+
+class ProfileContainer extends React.PureComponent {
 
     componentDidMount() {
         let userId = this.props.match.params.userId || this.props.currentUserId;
@@ -18,11 +18,16 @@ class ProfileContainer extends React.Component {
             this.props.setUserProfileThunkCreator(userId);
         }
     }
+    //
+    // shouldComponentUpdate(nextProps, nextState, nextContext) {
+    //     return nextProps !== this.props || nextState !== this.state;
+    // }
 
     render() {
+        console.log("RENDER PROFILE CONTAINER");
         return (
         <div>
-            <Profile {...this.props} />
+            <Profile {...this.props} userIdParam={this.props.match.params.userId}/>
         </div>
         )
     }
@@ -39,6 +44,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, {setUserProfileThunkCreator, setUserStatusThunkCreator, addPostActionCreator}),
-    //withAuthRedirect,
     withRouter
 )(ProfileContainer);

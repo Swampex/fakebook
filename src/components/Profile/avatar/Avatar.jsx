@@ -14,9 +14,8 @@ class Avatar extends React.Component {
             editMode: !this.state.editMode
         });
 
-        if (this.state.editMode) {
+        if (this.state.editMode && this.state.status !== event.target.value) {
             this.props.setStatus(event.target.value);
-            this.state.status = event.target.value;
         }
     };
 
@@ -39,6 +38,9 @@ class Avatar extends React.Component {
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({status: this.props.status});
+        }
     }
 
     render() {
@@ -48,7 +50,8 @@ class Avatar extends React.Component {
                      src={this.props.ava || anonymous} alt="meAva"/>
                 {this.showStatus()}
             </div>
-        )    }
+        )
+    }
 }
 
 export default Avatar;

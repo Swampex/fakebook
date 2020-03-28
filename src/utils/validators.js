@@ -15,3 +15,4 @@ export const minLengthCreator = (minLength) => (value) => {
         ? `field must be longer than ${minLength} symbols`
         : undefined;
 };
+

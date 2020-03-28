@@ -7,11 +7,14 @@ import App from "./App";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 
-ReactDOM.render(
-    <BrowserRouter>
-        <Provider store={store}>
+const RootApp = () => { return (
+    <Provider store={store}>
+        <BrowserRouter>
             <App/>
-        </Provider>
-    </BrowserRouter> , document.getElementById('root'));
+        </BrowserRouter>
+    </Provider>
+)};
+
+ReactDOM.render(<RootApp /> , document.getElementById('root'));
 
 serviceWorker.unregister();

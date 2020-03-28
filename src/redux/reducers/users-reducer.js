@@ -1,4 +1,5 @@
 import {userApi} from "../../api/api";
+import {createMappedObj} from "../../utils/object-helpers";
 
 export const follow = (userId) => ({ type: FOLLOW, userId: userId }) ;
 export const unFollow = (userId) => ({ type: UNFOLLOW, userId: userId }) ;
@@ -9,18 +10,14 @@ export const toggleFetchState = () => ({ type: TOGGLE_FETCH_STATE});
 export const toggleIsFollowingInProgress = (isFollowingInProgress, userId) => (
     { type: TOGGLE_FOLLOWING_IN_PROGRESS, isFollowingInProgress, userId });
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
-        dispatch(toggleFetchState());
-        dispatch(setCurrentPage(currentPage));
+export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(toggleFetchState());
+    dispatch(setCurrentPage(currentPage));
 
-        userApi.getUsers(currentPage, pageSize)
-            .then(data => {
-                dispatch(toggleFetchState());
-                dispatch(setUsers(data.users));
-                dispatch(setTotalUsersCount(data.totalUsersCount));
-            });
-    }
+    let data = await userApi.getUsers(currentPage, pageSize);
+    dispatch(toggleFetchState());
+    dispatch(setUsers(data.users));
+    dispatch(setTotalUsersCount(data.totalUsersCount));
 };
 
 export const unFollowThunkCreator = (id) => {
@@ -68,24 +65,14 @@ const usersReducer = (state = initialState, action) => {
         case FOLLOW: {
             return {
             ...state,
-                    users: state.users.map( u => {
-                    if(u.id === action.userId) {
-                        return {...u, followed: true}
-                    }
-                    return u;
-                })
+            users: createMappedObj(state.users, `id`, action.userId, {followed: true})
             }
         }
 
         case UNFOLLOW: {
             return {
             ...state,
-                    users: state.users.map( u => {
-                    if(u.id === action.userId) {
-                        return {...u, followed: false}
-                    }
-                    return u;
-                })
+            users: createMappedObj(state.users, `id`, action.userId, {followed: false})
             }
         }
 

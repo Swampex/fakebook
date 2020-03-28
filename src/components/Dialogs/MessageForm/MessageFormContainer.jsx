@@ -1,6 +1,6 @@
 import {addMessageActionCreator} from "../../../redux/reducers/dialogs-reducer";
 import MessageForm from "./MessageForm";
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
     return {}
