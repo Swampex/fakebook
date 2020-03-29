@@ -6,10 +6,11 @@ import anonymous from "../../resources/anonymous.png";
 let User = ({uId, photo, name, firstName, userLocation, followed, ...props}) => {
     return (
         <div key={uId} className={css.usersContainer__user}>
-            <NavLink to={"/profile/" + uId}>
-                <img src={photo ? photo : anonymous}
-                     className={css.userContainer__photo} alt=""/>
-            </NavLink>
+            <div className={css.userContainer__photo}>
+                <NavLink to={"/profile/" + uId}>
+                    <img src={photo ? photo : anonymous} alt=""/>
+                </NavLink>
+            </div>
             <div className={css.userContainer__name}>{name} {firstName} </div>
             <div className={css.userContainer__location}>
                 {userLocation && `${userLocation.town}, ${userLocation.country}`}</div>

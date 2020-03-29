@@ -4,6 +4,7 @@ import PostFormContainer from "./postForm/PostFormContainer";
 import Preloader from "../FormsControls/Preloader";
 import AvatarWithHooks from "./avatar/AvatarWithHooks";
 import {Redirect} from "react-router-dom";
+import Avatar from "./avatar/Avatar";
 
 const Profile = ({isAuth, userIdParam, profile, addPostActionCreator, posts, setUserStatusThunkCreator}) => {
 
@@ -32,7 +33,7 @@ const Profile = ({isAuth, userIdParam, profile, addPostActionCreator, posts, set
                 {profile.userLocation &&
                     <span> {` || ${profile.userLocation.town}, ${profile.userLocation.country}`} </span>}
             </div>
-            <AvatarWithHooks status={profile.status}
+            <Avatar status={profile.status}
                     ava= {profile.profile.photos && profile.profile.photos.photo_small}
                     setStatus={setUserStatusThunkCreator}/>
             { profile.profile && profile.profile.lookingForAJob ?

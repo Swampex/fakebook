@@ -18,6 +18,10 @@ export const getPageSize = (state) => {
     return state.usersPage.pageSize
 };
 
+export const getClusterSize = (state) => {
+    return state.usersPage.clusterSize
+};
+
 export const getTotalUsersCount = (state) => {
     return state.usersPage.totalUsersCount
 };

@@ -1,21 +1,23 @@
-import React, {Component} from 'react';
+import React, {Component, Suspense} from 'react';
 import './App.css';
 
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {Route} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import DialogsPageContainer from "./components/Dialogs/DialogsPageContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import LoginContainer from "./components/login/LoginContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import SignUpContainer from "./components/signUp/SignUpContainer";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {initializeApp} from "./redux/reducers/app-reducer";
 import Preloader from "./components/FormsControls/Preloader";
+import store from "./redux/redux-store";
+import {withSuspense} from "./hoc/withSuspense";
+const LoginContainer = React.lazy(() => import("./components/login/LoginContainer"));
+const SignUpContainer = React.lazy(() => import("./components/signUp/SignUpContainer"));
 
 class App extends Component {
 
@@ -36,8 +38,8 @@ class App extends Component {
                     <Route path={'/news'} component={News}/>
                     <Route path={'/music'} component={Music}/>
                     <Route path={'/settings'} component={Settings}/>
-                    <Route path={'/login'} component={LoginContainer}/>
-                    <Route path={'/signup'} component={SignUpContainer}/>
+                    <Route path={'/login'} component={withSuspense(LoginContainer)} />
+                    <Route path={'/signup'} component={withSuspense(SignUpContainer)} />
                 </div>
                 <SidebarContainer/>
             </div>
@@ -49,6 +51,14 @@ const mapStateToProps = (state) => {
     return {
         initialized: state.app.initialized
     }
-}
+};
 
-export default connect(mapStateToProps, {initializeApp})(App);
+const ContainerApp = connect(mapStateToProps, {initializeApp})(App);
+
+export const RootApp = () => {
+    return <Provider store={store}>
+        <BrowserRouter>
+            <ContainerApp/>
+        </BrowserRouter>
+    </Provider>
+};

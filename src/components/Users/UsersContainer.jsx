@@ -8,6 +8,7 @@ import * as React from "react";
 import Users from "./Users";
 import Preloader from "../FormsControls/Preloader";
 import {
+    getClusterSize,
     getCurrentPage, getFollowingIdsInProgress,
     getIsFetching,
     getPageSize,
@@ -27,13 +28,13 @@ class UsersApiComponent extends React.Component {
     };
 
     render() {
-        let pageCounter = Math.ceil(this.props.totalUsersCount / this.props.pageSize );
+        let totalPages = Math.ceil(this.props.totalUsersCount / this.props.pageSize );
 
         return <>
             {this.props.isFetching ? <Preloader /> : null}
-            <Users pageCounter={pageCounter} currentPage={this.props.currentPage}
-                          onPageChanged={this.onPageChanged} users={this.props.users}
-                          unFollow={this.props.unFollow} follow={this.props.follow}
+            <Users totalPages={totalPages} currentPage={this.props.currentPage} pageSize={this.props.pageSize}
+                   onPageChanged={this.onPageChanged} users={this.props.users} clusterSize={this.props.clusterSize}
+                   unFollow={this.props.unFollow} follow={this.props.follow}
                    toggleIsFollowingInProgress={this.props.toggleIsFollowingInProgress}
                    followingIdsInProgress={this.props.followingIdsInProgress}
                    followThunkCreator={this.props.followThunkCreator}
@@ -47,6 +48,7 @@ let mapStateToProps = (state) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
+        clusterSize: getClusterSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),

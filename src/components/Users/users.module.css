@@ -8,12 +8,15 @@
 .usersContainer__user {
     display: grid;
     grid-template-columns: 100px 1fr;
+    grid-template-rows: auto 75px 75px;
 }
 
 .userContainer__photo {
+    grid-row: 1 / span 2;
+}
+
+.userContainer__photo img {
     width: 100px;
-    grid-row-start: 1;
-    grid-row-end: 3;
 }
 
 .userContainer__name {

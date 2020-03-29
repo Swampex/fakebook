@@ -14,7 +14,7 @@ let Users = (props) => {
             <div className={css.usersContainer}>
                 { props.users.map(u =>
                     <User uId={u.id} photo={u.photo} name={u.name} firstName={u.firstName}
-                          userLocation={u.userLocation} followed={u.followed} {...props}/>
+                          userLocation={u.userLocation} followed={u.followed} {...props} key={u.id}/>
                 )}
             </div>
         </div>

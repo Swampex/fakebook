@@ -22,18 +22,18 @@ class Avatar extends React.Component {
     showStatus = () => {
         if (!this.props.status && !this.state.editMode) {
             return (
-                <div onClick={this.toggleEditMode} className={classes.avatar__statusEmpty}>
-                    <span>введите свой статус</span>
+                <div className={classes.avatar__statusEmpty}>
+                    <span onClick={this.toggleEditMode}>введите свой статус</span>
                 </div>
             )
         }
         return this.state.editMode
-            ? <div >
+            ? <div>
                 <input onBlur={this.toggleEditMode} className={classes.avatar__status}
                        autoFocus={true} type="text" defaultValue={this.state.status}/>
             </div>
-            : <div onClick={this.toggleEditMode} className={classes.avatar__status}>
-                <span>{this.state.status}</span>
+            : <div className={classes.avatar__status}>
+                <span onClick={this.toggleEditMode}>{this.state.status}</span>
             </div>
     };
 
