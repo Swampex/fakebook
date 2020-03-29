@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/fakebook/static/css/main.ef8d6072.chunk.css",
+    "main.js": "/fakebook/static/js/main.ef0c7efe.chunk.js",
+    "main.js.map": "/fakebook/static/js/main.ef0c7efe.chunk.js.map",
+    "runtime-main.js": "/fakebook/static/js/runtime-main.cb19b5dd.js",
+    "runtime-main.js.map": "/fakebook/static/js/runtime-main.cb19b5dd.js.map",
+    "static/js/2.267f8b53.chunk.js": "/fakebook/static/js/2.267f8b53.chunk.js",
+    "static/js/2.267f8b53.chunk.js.map": "/fakebook/static/js/2.267f8b53.chunk.js.map",
+    "static/js/3.09eda4d1.chunk.js": "/fakebook/static/js/3.09eda4d1.chunk.js",
+    "static/js/3.09eda4d1.chunk.js.map": "/fakebook/static/js/3.09eda4d1.chunk.js.map",
+    "static/js/4.1c2a15fa.chunk.js": "/fakebook/static/js/4.1c2a15fa.chunk.js",
+    "static/js/4.1c2a15fa.chunk.js.map": "/fakebook/static/js/4.1c2a15fa.chunk.js.map",
+    "index.html": "/fakebook/index.html",
+    "precache-manifest.0866bfea78a029514da49abdcc00e173.js": "/fakebook/precache-manifest.0866bfea78a029514da49abdcc00e173.js",
+    "service-worker.js": "/fakebook/service-worker.js",
+    "static/css/main.ef8d6072.chunk.css.map": "/fakebook/static/css/main.ef8d6072.chunk.css.map",
+    "static/js/2.267f8b53.chunk.js.LICENSE.txt": "/fakebook/static/js/2.267f8b53.chunk.js.LICENSE.txt",
+    "static/media/JohnDonne.png": "/fakebook/static/media/JohnDonne.e2c610a5.png",
+    "static/media/Petka.png": "/fakebook/static/media/Petka.da5b1a73.png",
+    "static/media/anonymous.png": "/fakebook/static/media/anonymous.1ae5e01b.png",
+    "static/media/football.png": "/fakebook/static/media/football.d5999271.png",
+    "static/media/monkey.png": "/fakebook/static/media/monkey.56620db2.png",
+    "static/media/school.png": "/fakebook/static/media/school.c3e9f6b1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cb19b5dd.js",
+    "static/js/2.267f8b53.chunk.js",
+    "static/css/main.ef8d6072.chunk.css",
+    "static/js/main.ef0c7efe.chunk.js"
+  ]
+}
