@@ -6,7 +6,8 @@ import AvatarWithHooks from "./avatar/AvatarWithHooks";
 import {Redirect} from "react-router-dom";
 import Avatar from "./avatar/Avatar";
 
-const Profile = ({isAuth, userIdParam, profile, addPostActionCreator, posts, setUserStatusThunkCreator}) => {
+const Profile = ({isAuth, userIdParam, profile, addPostActionCreator, posts,
+                     setUserStatusThunkCreator, isOwner, savePhoto}) => {
 
     if(!isAuth && !userIdParam) {
         return <Redirect to={"/login"}/>;
@@ -34,8 +35,8 @@ const Profile = ({isAuth, userIdParam, profile, addPostActionCreator, posts, set
                     <span> {` || ${profile.userLocation.town}, ${profile.userLocation.country}`} </span>}
             </div>
             <Avatar status={profile.status}
-                    ava= {profile.profile.photos && profile.profile.photos.photo_small}
-                    setStatus={setUserStatusThunkCreator}/>
+                    ava= {profile.profile.photos && profile.profile.photos.photo_large}
+                    setStatus={setUserStatusThunkCreator} isOwner={isOwner} savePhoto={savePhoto}/>
             { profile.profile && profile.profile.lookingForAJob ?
                 <div> Looking for a job: {profile.profile.lookingForAJobDescription} </div>
                 : null

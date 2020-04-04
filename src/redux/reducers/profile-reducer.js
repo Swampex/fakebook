@@ -5,6 +5,7 @@ const TOGGLE_LIKE = 'TOGGLE-LIKE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const DELETE_POST = "DELETE_POST";
+const SAVE_PHOTO = "SAVE_PHOTO";
 
 export function addPostActionCreator(message) {
     return {
@@ -41,6 +42,13 @@ export function setUserStatus(status) {
     }
 }
 
+export function setUserPhoto(photoUrl) {
+    return {
+        type: SAVE_PHOTO,
+        photoUrl: photoUrl
+    }
+}
+
 export const setUserProfileThunkCreator = (userId) => async (dispatch) => {
         let data = await profileApi.getProfile(userId);
         dispatch(setUserProfile(data));
@@ -50,6 +58,11 @@ export const setUserProfileThunkCreator = (userId) => async (dispatch) => {
 export const setUserStatusThunkCreator = (status) => async (dispatch) => {
     let data = await profileApi.setStatus(status);
     if (data.resultCode === 0) dispatch(setUserStatus(status));
+};
+
+export const savePhoto = (file) => async (dispatch) => {
+    let data = await profileApi.savePhoto(file);
+    if (data.resultCode === 0) dispatch(setUserPhoto(data.messages.filePath));
 };
 
 let initialState = {
@@ -110,6 +123,17 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: state.posts.filter( p => p.id !== action.id)
+            }
+        }
+        case SAVE_PHOTO: {
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    profile: {
+                        photos: {photo_large: action.photoUrl}
+                    }
+                }
             }
         }
         default: return state

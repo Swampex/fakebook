@@ -9,6 +9,10 @@ class Avatar extends React.Component {
         status: this.props.status
     };
 
+    onMainPhotoSelected = (e) => {
+        if(e.target.files.length) this.props.savePhoto(e.target.files[0]);
+    };
+
     toggleEditMode = (event) => {
         this.setState( {
             editMode: !this.state.editMode
@@ -48,7 +52,10 @@ class Avatar extends React.Component {
             <div className={classes.avatar}>
                 <img className={classes.avatar__img}
                      src={this.props.ava || anonymous} alt="meAva"/>
+                {(this.props.isOwner) &&
+                    <label htmlFor="file" className={classes.upload_label}>change avatar</label> }
                 {this.showStatus()}
+                <input type={"file"} onChange={this.onMainPhotoSelected} id="file" className={classes.upload_input}/>
             </div>
         )
     }

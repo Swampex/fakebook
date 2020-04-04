@@ -2,7 +2,7 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {
-    addPostActionCreator,
+    addPostActionCreator, savePhoto,
     setUserProfileThunkCreator,
     setUserStatusThunkCreator
 } from "../../redux/reducers/profile-reducer";
@@ -12,12 +12,23 @@ import {compose} from "redux";
 
 class ProfileContainer extends React.PureComponent {
 
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.match.params.userId || this.props.currentUserId;
         if(userId) {
             this.props.setUserProfileThunkCreator(userId);
         }
     }
+
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        let userIdFromUrl = this.props.match.params.userId || this.props.currentUserId;
+        if (this.props.profile.id != userIdFromUrl)
+            this.refreshProfile()
+    }
+
     //
     // shouldComponentUpdate(nextProps, nextState, nextContext) {
     //     return nextProps !== this.props || nextState !== this.state;
@@ -27,7 +38,8 @@ class ProfileContainer extends React.PureComponent {
         console.log("RENDER PROFILE CONTAINER");
         return (
         <div>
-            <Profile {...this.props} userIdParam={this.props.match.params.userId}/>
+            <Profile {...this.props} userIdParam={this.props.match.params.userId}
+                     isOwner={!this.props.match.params.userId}/>
         </div>
         )
     }
@@ -43,6 +55,6 @@ let mapStateToProps = (state) => {
 };
 
 export default compose(
-    connect(mapStateToProps, {setUserProfileThunkCreator, setUserStatusThunkCreator, addPostActionCreator}),
+    connect(mapStateToProps, {setUserProfileThunkCreator, setUserStatusThunkCreator, addPostActionCreator, savePhoto}),
     withRouter
 )(ProfileContainer);

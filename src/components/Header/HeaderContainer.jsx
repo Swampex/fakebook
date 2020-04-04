@@ -14,8 +14,7 @@ class HeaderApiComponent extends React.Component {
 let mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
-        login: state.auth.login,
-        userId: state.auth.userId
+        login: state.auth.login
     }
 };
 

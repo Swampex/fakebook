@@ -4,7 +4,7 @@ import './App.css';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, HashRouter, Route} from "react-router-dom";
 import DialogsPageContainer from "./components/Dialogs/DialogsPageContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -57,8 +57,8 @@ const ContainerApp = connect(mapStateToProps, {initializeApp})(App);
 
 export const RootApp = () => {
     return <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter >
             <ContainerApp/>
-        </BrowserRouter>
+        </HashRouter>
     </Provider>
 };
