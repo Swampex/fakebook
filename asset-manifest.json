@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/fakebook/static/css/main.ef8d6072.chunk.css",
-    "main.js": "/fakebook/static/js/main.d0bfc4c7.chunk.js",
-    "main.js.map": "/fakebook/static/js/main.d0bfc4c7.chunk.js.map",
-    "runtime-main.js": "/fakebook/static/js/runtime-main.50fd667c.js",
-    "runtime-main.js.map": "/fakebook/static/js/runtime-main.50fd667c.js.map",
-    "static/js/2.0244c83d.chunk.js": "/fakebook/static/js/2.0244c83d.chunk.js",
-    "static/js/2.0244c83d.chunk.js.map": "/fakebook/static/js/2.0244c83d.chunk.js.map",
-    "static/js/3.09eda4d1.chunk.js": "/fakebook/static/js/3.09eda4d1.chunk.js",
-    "static/js/3.09eda4d1.chunk.js.map": "/fakebook/static/js/3.09eda4d1.chunk.js.map",
-    "static/js/4.dd01a0e9.chunk.js": "/fakebook/static/js/4.dd01a0e9.chunk.js",
-    "static/js/4.dd01a0e9.chunk.js.map": "/fakebook/static/js/4.dd01a0e9.chunk.js.map",
+    "main.js": "/fakebook/static/js/main.a82a6080.chunk.js",
+    "main.js.map": "/fakebook/static/js/main.a82a6080.chunk.js.map",
+    "runtime-main.js": "/fakebook/static/js/runtime-main.c92521e7.js",
+    "runtime-main.js.map": "/fakebook/static/js/runtime-main.c92521e7.js.map",
+    "static/js/2.0e9832f9.chunk.js": "/fakebook/static/js/2.0e9832f9.chunk.js",
+    "static/js/2.0e9832f9.chunk.js.map": "/fakebook/static/js/2.0e9832f9.chunk.js.map",
+    "static/js/3.619fb382.chunk.js": "/fakebook/static/js/3.619fb382.chunk.js",
+    "static/js/3.619fb382.chunk.js.map": "/fakebook/static/js/3.619fb382.chunk.js.map",
+    "static/js/4.c5c7b2f9.chunk.js": "/fakebook/static/js/4.c5c7b2f9.chunk.js",
+    "static/js/4.c5c7b2f9.chunk.js.map": "/fakebook/static/js/4.c5c7b2f9.chunk.js.map",
     "index.html": "/fakebook/index.html",
-    "precache-manifest.d06a8d2d32d49f5fdcb334b96a611af7.js": "/fakebook/precache-manifest.d06a8d2d32d49f5fdcb334b96a611af7.js",
+    "precache-manifest.70613ffc62b3fae2560f03b697645efc.js": "/fakebook/precache-manifest.70613ffc62b3fae2560f03b697645efc.js",
     "service-worker.js": "/fakebook/service-worker.js",
     "static/css/main.ef8d6072.chunk.css.map": "/fakebook/static/css/main.ef8d6072.chunk.css.map",
-    "static/js/2.0244c83d.chunk.js.LICENSE.txt": "/fakebook/static/js/2.0244c83d.chunk.js.LICENSE.txt",
+    "static/js/2.0e9832f9.chunk.js.LICENSE.txt": "/fakebook/static/js/2.0e9832f9.chunk.js.LICENSE.txt",
     "static/media/JohnDonne.png": "/fakebook/static/media/JohnDonne.e2c610a5.png",
     "static/media/Petka.png": "/fakebook/static/media/Petka.da5b1a73.png",
     "static/media/anonymous.png": "/fakebook/static/media/anonymous.1ae5e01b.png",
@@ -24,9 +24,9 @@
     "static/media/school.png": "/fakebook/static/media/school.c3e9f6b1.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.50fd667c.js",
-    "static/js/2.0244c83d.chunk.js",
+    "static/js/runtime-main.c92521e7.js",
+    "static/js/2.0e9832f9.chunk.js",
     "static/css/main.ef8d6072.chunk.css",
-    "static/js/main.d0bfc4c7.chunk.js"
+    "static/js/main.a82a6080.chunk.js"
   ]
 }
