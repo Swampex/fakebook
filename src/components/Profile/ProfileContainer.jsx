@@ -2,7 +2,7 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {
-    addPostActionCreator, savePhoto,
+    addPostActionCreator, savePhoto, saveProfileThunkCreator,
     setUserProfileThunkCreator,
     setUserStatusThunkCreator
 } from "../../redux/reducers/profile-reducer";
@@ -29,11 +29,6 @@ class ProfileContainer extends React.PureComponent {
             this.refreshProfile()
     }
 
-    //
-    // shouldComponentUpdate(nextProps, nextState, nextContext) {
-    //     return nextProps !== this.props || nextState !== this.state;
-    // }
-
     render() {
         console.log("RENDER PROFILE CONTAINER");
         return (
@@ -50,11 +45,13 @@ let mapStateToProps = (state) => {
         profile: state.profilePage.profile,
         posts: state.profilePage.posts,
         currentUserId: state.auth.userId,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        isProfileUpdateResultSuccess: state.profilePage.isProfileUpdateResultSuccess
     }
 };
 
 export default compose(
-    connect(mapStateToProps, {setUserProfileThunkCreator, setUserStatusThunkCreator, addPostActionCreator, savePhoto}),
+    connect(mapStateToProps, {setUserProfileThunkCreator, setUserStatusThunkCreator,
+        addPostActionCreator, savePhoto, saveProfileThunkCreator}),
     withRouter
 )(ProfileContainer);

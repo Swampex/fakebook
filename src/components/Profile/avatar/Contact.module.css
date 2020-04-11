@@ -1,0 +1,12 @@
+.name {
+    font-weight: bold;
+}
+
+.url {
+
+}
+
+.contactBlock {
+    display: grid;
+    grid-template-columns: 150px 200px;
+}

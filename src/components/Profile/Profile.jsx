@@ -2,12 +2,13 @@ import React from 'react';
 import PostContainer from "./post/PostContainer";
 import PostFormContainer from "./postForm/PostFormContainer";
 import Preloader from "../FormsControls/Preloader";
-import AvatarWithHooks from "./avatar/AvatarWithHooks";
 import {Redirect} from "react-router-dom";
-import Avatar from "./avatar/Avatar";
+import ProfileInfo from "./avatar/ProfileInfo";
+import ProfileHeader from "./avatar/ProfileHeader";
 
 const Profile = ({isAuth, userIdParam, profile, addPostActionCreator, posts,
-                     setUserStatusThunkCreator, isOwner, savePhoto}) => {
+                     setUserStatusThunkCreator, isOwner, savePhoto, saveProfileThunkCreator,
+                     isProfileUpdateResultSuccess}) => {
 
     if(!isAuth && !userIdParam) {
         return <Redirect to={"/login"}/>;
@@ -27,20 +28,11 @@ const Profile = ({isAuth, userIdParam, profile, addPostActionCreator, posts,
     
     return (
         <div>
-            <div>
-                <span style={ {fontWeight: "bold"} }>
-                    {`${profile.firstName || ""} ${profile.name || ""}`}
-                </span>
-                {profile.userLocation &&
-                    <span> {` || ${profile.userLocation.town}, ${profile.userLocation.country}`} </span>}
-            </div>
-            <Avatar status={profile.status}
-                    ava= {profile.profile.photos && profile.profile.photos.photo_large}
-                    setStatus={setUserStatusThunkCreator} isOwner={isOwner} savePhoto={savePhoto}/>
-            { profile.profile && profile.profile.lookingForAJob ?
-                <div> Looking for a job: {profile.profile.lookingForAJobDescription} </div>
-                : null
-            }
+            <ProfileHeader setStatus={setUserStatusThunkCreator} status={profile.status} isOwner={isOwner}
+                userLocation={profile.userLocation} firstName={profile.firstName} name={profile.name}/>
+            <ProfileInfo ava= {profile.profile.photos && profile.profile.photos.photo_large} saveProfile={saveProfileThunkCreator}
+                isOwner={isOwner} savePhoto={savePhoto} contacts={profile.profile.contacts} profile={profile}
+                         isProfileUpdateResultSuccess={isProfileUpdateResultSuccess}/>
             <PostFormContainer onSubmit={onSubmitProfileMessage}/>
             {postsList}
         </div>)

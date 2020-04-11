@@ -40,6 +40,12 @@ export const profileApi = {
         return instance.put("profile/photo", bodyFormData, {
             headers: { "Content-Type": "multipart/form-data" }
         }) .then(response => response.data)
+    },
+    saveProfile(formData) {
+        return instance.post("user/jackson/save", formData)
+            .then(rs => {
+                return rs.data;
+            })
     }
 };
 

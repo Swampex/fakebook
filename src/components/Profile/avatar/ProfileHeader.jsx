@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
-import classes from './Avatar.module.css';
-import anonymous from "../../../resources/anonymous.png";
+import classes from "./Avatar.module.css";
 
-const AvatarWithHooks = ({status, ava, setStatus}) => {
+const ProfileHeader = ({status, setStatus, isOwner}) => {
 
     let [editMode, setEditMode] = useState(false);
     let [statusState, setStatusState] = useState(status);
@@ -39,11 +38,10 @@ const AvatarWithHooks = ({status, ava, setStatus}) => {
 
     return (
         <div className={classes.info}>
-            <img className={classes.avatar__img}
-                 src={ava || anonymous} alt="meAva"/>
+
             {showStatus()}
         </div>
     )
 };
 
-export default AvatarWithHooks;
+export default ProfileHeader;

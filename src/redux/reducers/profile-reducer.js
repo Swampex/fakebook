@@ -1,4 +1,5 @@
 import {profileApi} from "../../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const TOGGLE_LIKE = 'TOGGLE-LIKE';
@@ -6,6 +7,7 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const DELETE_POST = "DELETE_POST";
 const SAVE_PHOTO = "SAVE_PHOTO";
+const SAVE_PROFILE = "SAVE_PROFILE";
 
 export function addPostActionCreator(message) {
     return {
@@ -49,11 +51,17 @@ export function setUserPhoto(photoUrl) {
     }
 }
 
-export const setUserProfileThunkCreator = (userId) => async (dispatch) => {
-        let data = await profileApi.getProfile(userId);
-        dispatch(setUserProfile(data));
+export function saveProfile(status) {
+    return {
+        type: SAVE_PROFILE,
+        status: status
     }
-;
+}
+
+export const setUserProfileThunkCreator = (userId) => async (dispatch) => {
+    let data = await profileApi.getProfile(userId);
+    dispatch(setUserProfile(data));
+};
 
 export const setUserStatusThunkCreator = (status) => async (dispatch) => {
     let data = await profileApi.setStatus(status);
@@ -65,6 +73,19 @@ export const savePhoto = (file) => async (dispatch) => {
     if (data.resultCode === 0) dispatch(setUserPhoto(data.messages.filePath));
 };
 
+export const saveProfileThunkCreator = (formData) => async (dispatch, getState) => {
+    dispatch(saveProfile(undefined));
+    const userId = getState().auth.userId;
+    let data = await profileApi.saveProfile(formData);
+    if (data.resultCode === 0) {
+        dispatch(setUserProfileThunkCreator(userId));
+        dispatch(saveProfile(true));
+    } else {
+        dispatch(stopSubmit("profile", {_error: data.messages.error}))
+        dispatch(saveProfile(false));
+    }
+};
+
 let initialState = {
     posts: [
         {
@@ -74,9 +95,10 @@ let initialState = {
             likeCounter: 3,
             liked: true
         },
-        {id: 2, text: "2 Lorem ipsum est my shagga lala boom", likeCounter: 34, liked: false}
+        { id: 2, text: "2 Lorem ipsum est my shagga lala boom", likeCounter: 34, liked: false }
     ],
-    profile: null
+    profile: null,
+    isProfileUpdateResultSuccess: true
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -134,6 +156,12 @@ const profileReducer = (state = initialState, action) => {
                         photos: {photo_large: action.photoUrl}
                     }
                 }
+            }
+        }
+        case SAVE_PROFILE: {
+            return {
+                ...state,
+                isProfileUpdateResultSuccess: action.status
             }
         }
         default: return state
