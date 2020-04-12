@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "af45633fcbec9ed8ff6ffecdb621ba30",
+    "revision": "05c63d7af691dbae4e7d64339d371e4a",
     "url": "/fakebook/index.html"
   },
   {
-    "revision": "73ced784efe4848b0c6a",
+    "revision": "408f7cad6bda3dc93b2b",
     "url": "/fakebook/static/css/main.e69028ad.chunk.css"
   },
   {
@@ -16,20 +16,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fakebook/static/js/2.b43b7442.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f8c119f77d219bdf792b",
-    "url": "/fakebook/static/js/3.9f81d8ad.chunk.js"
+    "revision": "2b8dc96cc24a088416e1",
+    "url": "/fakebook/static/js/3.8a2bc890.chunk.js"
   },
   {
     "revision": "d72b9fbd74dc4ed70cf3",
     "url": "/fakebook/static/js/4.458bdc80.chunk.js"
   },
   {
-    "revision": "73ced784efe4848b0c6a",
-    "url": "/fakebook/static/js/main.af44c5fb.chunk.js"
+    "revision": "408f7cad6bda3dc93b2b",
+    "url": "/fakebook/static/js/main.e7dc8140.chunk.js"
   },
   {
-    "revision": "d7beb1f769b738cbb1e2",
-    "url": "/fakebook/static/js/runtime-main.6fa274c9.js"
+    "revision": "1334091b7f7531af7329",
+    "url": "/fakebook/static/js/runtime-main.f53e4d16.js"
   },
   {
     "revision": "e2c610a5bb38d2f922b5635d93a9d4e3",
