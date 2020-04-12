@@ -5,6 +5,7 @@ const SET_USER_DATA = 'SET_USER_DATA';
 const LOGOUT = "LOGOUT";
 const LOGIN = "LOGIN";
 const SIGNUP = "SIGNUP";
+const SET_CAPTCHA_VALUE = "SET_CAPTCHA_VALUE";
 
 function setAuthUserData(userId, email, login) {
     return {
@@ -37,6 +38,13 @@ function signupAC(isShowingSignupSuccess) {
     }
 }
 
+function setCaptchaValue(captchaValue) {
+    return {
+        type: SET_CAPTCHA_VALUE,
+        captchaValue: captchaValue
+    }
+}
+
 export const authUserThunkCreator = () => (dispatch) => {
     return authApi.getAuthMe()
         .then(data => {
@@ -59,13 +67,14 @@ export const logoutThunkCreator = () => {
 };
 
 export const loginThunkCreator = (login, password, rememberMe) => {
-    return (dispatch) => {
-        authApi.login(login, password, rememberMe)
+    return (dispatch, getState) => {
+        const captchaValue = getState().auth.captchaValue;
+        authApi.login(login, password, rememberMe, captchaValue)
             .then(data => {
-                !data.exception
+                !data.message
                     ? dispatch(loginAC(true, "",
                     data.id, data.email, data.login))
-                    : dispatch(loginAC(false, data.exception));
+                    : dispatch(loginAC(false, data.message));
             })
     }
 };
@@ -85,6 +94,12 @@ export const signupThunkCreator = (login, email, password) => {
     }
 };
 
+export const setCaptchaValueTC = (captchaValue) => {
+    return (dispatch) => {
+        dispatch(setCaptchaValue(captchaValue));
+    }
+};
+
 let initialState = {
     userId: null,
     email: null,
@@ -92,7 +107,8 @@ let initialState = {
     isAuth: false,
     isFetching: false,
     errorMessage: "",
-    isShowingSignupSuccess: false
+    isShowingSignupSuccess: false,
+    captchaValue: undefined
 };
 
 const authReducer = (state = initialState, action) => {
@@ -124,6 +140,12 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isShowingSignupSuccess: action.isShowingSignupSuccess
+            }
+        }
+        case SET_CAPTCHA_VALUE: {
+            return {
+                ...state,
+                captchaValue: action.captchaValue
             }
         }
 

@@ -4,6 +4,7 @@ import {Redirect} from "react-router-dom";
 import {createField, Input} from "../FormsControls/FormsControls";
 import {requiredField} from "../../utils/validators";
 import css from "../FormsControls/FormsControls.module.css";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Login = (props) => {
 
@@ -23,6 +24,12 @@ const Login = (props) => {
 };
 
 const LoginForm = (props) => {
+
+    const onChange = (value) => {
+        console.log("Captcha value:", value);
+        props.setCaptchaValueTC(value);
+    };
+
     return (
         <form onSubmit={props.handleSubmit}>
             {createField("login", "login", Input, [requiredField])}
@@ -30,6 +37,9 @@ const LoginForm = (props) => {
                 {type: "password"})}
             {createField("rememberMe", "", Input, null,
                 {type: "checkbox"}, "remember me")}
+
+            <ReCAPTCHA sitekey="6LcwtugUAAAAAJV6-_hi0LUyRTWQISpxSNLxnezj" onChange={onChange} />
+
             <div> <button>Login</button> </div>
             {!props.isLoginSuccess &&
             <div>

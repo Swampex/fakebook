@@ -60,13 +60,13 @@ export const authApi = {
             })
     },
 
-    login(login, password, rememberMe) {
+    login(login, password, rememberMe, captchaValue) {
         let bodyFormData = new FormData();
         bodyFormData.set("login", login);
         bodyFormData.set("password", password);
         bodyFormData.set("rememberMe", rememberMe);
 
-        return instance.post("login", bodyFormData)
+        return instance.post(`login?captchaValue=${captchaValue}`, bodyFormData)
             .then(rs => {
                 return rs.data
             })

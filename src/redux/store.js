@@ -7,7 +7,6 @@ import avaFoot from '../resources/football.png';
 import avaCinema from '../resources/cinema.png';
 import profileReducer from "./reducers/profile-reducer";
 import dialogsReducer from "./reducers/dialogs-reducer";
-import sidebarReducer from "./reducers/sidebar-reducer";
 
 let store = {
     _state: {

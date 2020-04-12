@@ -1,7 +1,7 @@
 import React from "react";
 import Login from "./Login";
 import {connect} from "react-redux";
-import {loginThunkCreator} from "../../redux/reducers/auth-reducer";
+import {loginThunkCreator, setCaptchaValueTC} from "../../redux/reducers/auth-reducer";
 
 
 class LoginApiComponent extends React.Component {
@@ -19,6 +19,6 @@ const mapStateToProps = (state) => {
     }
 };
 
-let LoginContainer = connect(mapStateToProps, {loginThunkCreator})(LoginApiComponent);
+let LoginContainer = connect(mapStateToProps, {loginThunkCreator, setCaptchaValueTC})(LoginApiComponent);
 
 export default LoginContainer;
